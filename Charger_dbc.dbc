@@ -32,12 +32,20 @@ NS_ :
     SG_MUL_VAL_
 
 BS_: 
-BU_: OBC 
+BU_: V2L_OBC OBC 
 BO_ 952 OBCMsg3B8: 8 OBC
-   SG_ ACVolts : 23|8@0+ (2,0) [0|255] "Volts" Vector__XXX
-   SG_ AC_Amps : 15|8@0+ (0.25,0) [0|35] "" Vector__XXX
-   SG_ CP_PWM : 0|8@1+ (1,0) [0|0] "" Vector__XXX
-   SG_ DC_Amps : 32|8@1+ (0.05,0) [0|50] "Amps" Vector__XXX
+   SG_ ACVolts : 23|8@0+ (2,0) [0|255] "Volts" V2L_OBC
+   SG_ AC_Amps : 15|8@0+ (0.25,0) [0|35] "" V2L_OBC
+   SG_ CP_PWM : 0|8@1+ (1,0) [0|0] "" V2L_OBC
+   SG_ DC_Amps : 32|8@1+ (0.05,0) [0|50] "Amps" V2L_OBC
+
+BO_ 2147484475 Msg33B: 8 V2L_OBC
+   SG_ CP-Duty : 7|8@0+ (1,0) [0|1] "" V2L_OBC
+
+BO_ 2147484452 Msg324: 8 V2L_OBC
+   SG_ CableCurrentLimit : 7|4@0+ (1,0) [0|1] "" Vector__XXX
+   SG_ PortError : 3|4@0+ (1,0) [0|1] "" Vector__XXX
+   SG_ Udc : 15|16@0+ (0.02,0) [0|1] "V" Vector__XXX
 
 BA_DEF_ BO_ "GenMsgBackgroundColor" STRING ;
 BA_DEF_ BO_ "GenMsgForegroundColor" STRING ;
@@ -49,4 +57,7 @@ BA_DEF_DEF_ "GenMsgForegroundColor" "#000000";
 BA_DEF_DEF_ "matchingcriteria" 0;
 BA_DEF_DEF_ "filterlabeling" 1;
 BA_DEF_DEF_ "isj1939dbc" 0;
+BA_ "GenMsgBackgroundColor" BO_ 2147484475 "#f9f06b";
 VAL_ 952 CP_PWM 100 "Static_Pilot";
+VAL_ 2147484452 CableCurrentLimit 0 "Not_Plugged_In" 6 "Proximity_Detect" 4 "13A" 3 "20A" 2 "32A" 1 "63A";
+VAL_ 2147484452 PortError 0 "Good" 3 "PP_missing" 9 "Port_overheat?" 7 "Interlock";
